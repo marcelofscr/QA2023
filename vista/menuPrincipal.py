@@ -1,5 +1,4 @@
 import tkinter as tk
-from vista.vistaAeropuerto import vistaAeropuerto  
 from vista.vistaVuelos import vistaVuelos
 from vista.vistaClima import vistaClima
 
@@ -23,10 +22,6 @@ class menuPrincipal:
         espacio1.pack()
         self.button2.pack()
 
-
-    def abrirVistaAeropuerto(self):
-        self.root.destroy()  
-        vistaaeropuerto = vistaAeropuerto(tk.Tk())
 
     def abrirVistaVuelos(self):
         self.root.destroy()  
