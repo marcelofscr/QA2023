@@ -24,6 +24,7 @@ class vistaAeropuerto:
         self.text.pack()
 
 
+
     def get_airports(self):
         letter = self.entry.get().upper()
         airports = self.controller.get_airports(letter)

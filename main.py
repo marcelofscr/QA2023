@@ -1,5 +1,5 @@
 import tkinter as tk
-from vista.menuPrincipal import menuPrincipal  
+from vista.menuPrincipal  import menuPrincipal  
 
 def main():
     root = tk.Tk()
