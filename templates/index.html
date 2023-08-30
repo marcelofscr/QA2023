@@ -35,6 +35,18 @@
                         <input type="text" name="letra" id="letra">
                         <input type="submit" value="Obtener Aeropuertos">
                     </form>
+                    <br>
+                    <form method="POST" action="/getVuelosActuales">
+                        <label for="letra">Ver vuelos esperados de aeropuerto por IATA:</label>
+                        <input type="text" name="iata" id="iata" required>
+                        <input type="submit" value="Mostrar">
+                    </form>
+                    <br>
+                    <form method="POST" action="/getVuelosActualesSalida">
+                        <label for="letra">Ver vuelos salidos de aeropuerto por IATA:</label>
+                        <input type="text" name="iataD" id="iataD" required>
+                        <input type="submit" value="Mostrar">
+                    </form>
                 </div>
             </div>
         </div>
