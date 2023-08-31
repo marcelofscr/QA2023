@@ -71,3 +71,31 @@ class Vuelos:
                     "departure_time": departure_time
                 })
             return vuelosSalida
+        
+    #Retorna la información de un vuelo en específico a partir de un Código
+    def obtenerVueloPorCodigo(self):
+        url = f'http://api.aviationstack.com/v1/airports?access_key={self.api_key}'
+        response = requests.get(url)
+
+        if response.status_code == 200:
+            data = response.json()
+            informacionVuelo = []
+            for vuelo in data["data"]:
+                airline = vuelo["airline"]["name"]
+                departure = vuelo["departure"]["airport"]
+                destination = vuelo["arrival"]["airport"]
+                departure_time = vuelo["departure"]["estimated"]
+                estimated_arrival = vuelo["arrival"]["estimated"]
+                status = ["flight_status"]
+
+                informacionVuelo.append({
+                    "airline": airline,
+                    "departure": departure,
+                    "destination": destination,
+                    "departure_time": departure_time,
+                    "estimated_arrival": estimated_arrival,
+                    "status": status
+                })
+            return informacionVuelo
+        else:
+            return []
