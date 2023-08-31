@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Filtro por rutas seleccionadas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <style>
+        html,
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: "Raleway", sans-serif;
+        }
+    </style>
+</head>
+<body  class="w3-light-grey">
+    <div class="w3-main" style="margin-left: 300px; margin-top: 43px;">
+        <div class="w3-panel">
+    <h1>Vuelos:</h1>
+    
+    <table class="w3-table w3-bordered">
+        <tr>
+            <th>Aerolínea</th>
+            <th>Número de Vuelo</th>
+            <th>Estado</th>
+            <th>Hora de salida</th>
+            <th>Hora de llegada</th>
+        </tr>
+        
+        {% for flight in flights %}
+        <tr>
+            <td>{{ flight.airline }}</td>
+            <td>{{ flight.flight_number }}</td>
+            <td>{{ flight.status }}</td>
+            <td>{{ flight.departure_scheduled }}</td>
+            <td>{{ flight.arrival_scheduled }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -47,6 +47,21 @@
                         <input type="text" name="iataD" id="iataD" required>
                         <input type="submit" value="Mostrar">
                     </form>
+                    <br>
+                    <form method="POST" action="get_flights">
+                        <label for="letra">Filtro de vuelos con rutas</label><br><br>
+                        <label for="letra">codigo IATA Origen:</label>
+                        <input type="text" name="iataOrigen" id="iataOrigen" required><br><br>
+                        <label for="letra">codigo IATA Destino:</label>
+                        <input type="text" name="iataDestino" id="iataDestino" required>
+                        <input type="submit" value="Mostrar">
+                    </form>
+                    <br>
+                    <form method="POST" action="/get_weather">
+                        <label for="letra">Ver pronóstico de clima por código IATA aeropuerto:</label>
+                        <input type="text" name="iataAeropuerto" id="iataAeropuerto" required>
+                        <input type="submit" value="Mostrar">
+                    </form>
                 </div>
             </div>
         </div>

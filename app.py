@@ -2,13 +2,17 @@ from flask import Flask, render_template, request
 from controlador.controladorAeropuerto import controladorAeropuerto
 from modelo.Aeropuerto import Aeropuerto
 from modelo.Vuelos import Vuelos
+from controlador.controladorVuelos import controladorVuelos
 from controlador.controladorVuelosActualesSalida import controladorVuelosActualesSalida
 from controlador.controladorVuelosActuales import controladorVuelosActuales
+from controlador.controladorClima import controladorClima
 
 app = Flask(__name__)
 controller = controladorAeropuerto(Aeropuerto("83a922f7be03a2cbd4dda957dffcc2a3"))
 controllerLlegada = controladorVuelosActuales(Vuelos("83a922f7be03a2cbd4dda957dffcc2a3"))
 controllerSalida = controladorVuelosActualesSalida(Vuelos("83a922f7be03a2cbd4dda957dffcc2a3"))
+controllerRuta = controladorVuelos(Vuelos("83a922f7be03a2cbd4dda957dffcc2a3"))
+controllerClima = controladorClima(Aeropuerto("83a922f7be03a2cbd4dda957dffcc2a3"))
 
 @app.route('/')
 def index():
@@ -32,6 +36,19 @@ def getVuelosActualesSalida():
     iata = request.form['iataD']
     vueloSalidas = controllerSalida.getVuelosActualesSalida(iata)
     return render_template('vistaVuelosActualesSalida.html', flights=vueloSalidas)
+
+@app.route('/get_flights', methods=['POST'])
+def get_flights():
+    iataO = request.form['iataOrigen']
+    iataDs = request.form['iataDestino']
+    vueloRutas = controllerRuta.get_flights(iataO,iataDs)
+    return render_template('vistaVuelosRuta.html', flights=vueloRutas)
+
+@app.route('/get_weather', methods=['POST'])
+def get_weather():
+    iataAeropuerto = request.form['iataAeropuerto']
+    clima = controllerClima.get_weather(iataAeropuerto)
+    return render_template('vistaClima.html', airports=clima)
 
 if __name__ == '__main__':
     app.run(debug=True)
