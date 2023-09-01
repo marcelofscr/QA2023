@@ -1,17 +1,16 @@
-class ControladorCodigoVuelos:
+class controladorCodigoVuelos:
     def __init__(self, model):
         self.model = model
 
-    def get_flights_by_code(self, codigoVuelo):
+    def get_flights_by_code(self, iataVuelo):
         try: 
-            int(codigoVuelo)
-            listaVuelos = self.model.obtenerVuelos()
+            listaVuelos = self.model.obtenerVueloPorCodigo(iataVuelo)
             print(listaVuelos)
             if listaVuelos == []:
                 return "No se encontraron vuelos disponibles" 
             else:
-                InformacionVuelo = [flight for flight in listaVuelos if flight['flight']['number'] == codigoVuelo]
+                InformacionVuelo = [flight for flight in listaVuelos if flight.get("flight_iata") == iataVuelo ]
                 return InformacionVuelo
         except ValueError:
             # Handle the exception
-            print('Please enter an integer')
+            print('No disponible')

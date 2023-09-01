@@ -34,11 +34,17 @@
         {% for flight in flights %}
         <tr>
             <td>{{ flight.airline }}</td>
-            <td>{{ flight.flight_number }}</td>
+            <td>{{ flight.flight_iata }}</td>
             <td>{{ flight.destination }}</td>
             <td>{{ flight.departure_time }}</td>
         </tr>
         {% endfor %}
+
+        <td>----------Ultima linea----------</td>
     </table>
+
+    <form method="GET" action="/">
+        <input type="submit" value="Regresar">
+    </form>
 </body>
 </html>

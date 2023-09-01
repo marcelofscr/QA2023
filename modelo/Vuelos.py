@@ -1,5 +1,5 @@
 import requests
-
+import datetime
 
 class Vuelos:
     def __init__(self, api_key):
@@ -15,14 +15,14 @@ class Vuelos:
             vuelosRuta = []
             for flight in data["data"]:
                 airlineName = flight["airline"]["name"]
-                flight_number2 = flight["flight"]["number"]
+                flight_iata = flight["flight"]["iata"]
                 departure_scheduled = flight['departure']['scheduled']
                 arrival_scheduled = flight['arrival']['scheduled']
                 status = flight["flight_status"]
 
                 vuelosRuta.append({
                     "airline": airlineName,
-                    "flight_number": flight_number2,
+                    "flight_iata": flight_iata,
                     "departure_scheduled": departure_scheduled,
                     "arrival_scheduled": arrival_scheduled,
                     "status": status
@@ -38,13 +38,13 @@ class Vuelos:
             vuelosLlegada = []
             for vuelo in data["data"]:
                 airline = vuelo["airline"]["name"]
-                flight_number = vuelo["flight"]["number"]
+                flight_iata = vuelo["flight"]["iata"]
                 departure = vuelo["departure"]["airport"]
                 estimated_arrival = vuelo["arrival"]["estimated"]
 
                 vuelosLlegada.append({
                     "airline": airline,
-                    "flight_number": flight_number,
+                    "flight_iata": flight_iata,
                     "departure": departure,
                     "estimated_arrival": estimated_arrival
                 })
@@ -60,35 +60,37 @@ class Vuelos:
             vuelosSalida = []
             for vuelo in data["data"]:
                 airline = vuelo["airline"]["name"]
-                flight_number = vuelo["flight"]["number"]
+                flight_iata = vuelo["flight"]["iata"]
                 destination = vuelo["arrival"]["airport"]
                 departure_time = vuelo["departure"]["estimated"]
 
                 vuelosSalida.append({
                     "airline": airline,
-                    "flight_number": flight_number,
+                    "flight_iata": flight_iata,
                     "destination": destination,
                     "departure_time": departure_time
                 })
             return vuelosSalida
         
     #Retorna la información de un vuelo en específico a partir de un Código
-    def obtenerVueloPorCodigo(self):
-        url = f'http://api.aviationstack.com/v1/airports?access_key={self.api_key}'
+    def obtenerVueloPorCodigo(self, iataVuelo):
+        url = f'http://api.aviationstack.com/v1/flights?access_key={self.api_key}&flight_iata={iataVuelo}'
         response = requests.get(url)
 
         if response.status_code == 200:
             data = response.json()
-            informacionVuelo = []
-            for vuelo in data["data"]:
-                airline = vuelo["airline"]["name"]
-                departure = vuelo["departure"]["airport"]
-                destination = vuelo["arrival"]["airport"]
-                departure_time = vuelo["departure"]["estimated"]
-                estimated_arrival = vuelo["arrival"]["estimated"]
-                status = ["flight_status"]
+            vuelosCodigo = []
+            for flight in data["data"]:
+                flight_iata = flight["flight"]["iata"]
+                airline = flight["airline"]["name"]
+                departure = flight["departure"]["airport"]
+                destination = flight["arrival"]["airport"]
+                departure_time = flight["departure"]["estimated"]
+                estimated_arrival = flight["arrival"]["estimated"]
+                status = flight["flight_status"]
 
-                informacionVuelo.append({
+                vuelosCodigo.append({
+                    "flight_iata": flight_iata,
                     "airline": airline,
                     "departure": departure,
                     "destination": destination,
@@ -96,6 +98,6 @@ class Vuelos:
                     "estimated_arrival": estimated_arrival,
                     "status": status
                 })
-            return informacionVuelo
+            return vuelosCodigo
         else:
             return []

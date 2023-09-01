@@ -22,35 +22,28 @@
 </head>
 
 <body class="w3-light-grey">
-    <div class="w3-main" style="margin-left: 300px; margin-top: 43px;">
+    <div class="w3-main" style="margin-left: 30px; margin-top: 43px;">
         <div class="w3-panel">
-            <h2>Información de vuelo</h2>
-            <table class="w3-table w3-bordered">
-                <caption>Vuelo</caption>
-                <tr>
-                    <th>Aerolínea</th>
-                    <th>Procedencia</th>
-                    <th>Destino</th>
-                    <th>Hora de salida</th>
-                    <th>Hora de Llegada Estimada</th>
-                    <th>Estado</th>
-                </tr>
-                {% for dato in vuelo %}
-                <tr>
-                    <td>{{ dato.airline }}</td>
-                    <td>{{ dato.departure }}</td>
-                    <td>{{ dato.destination }}</td>
-                    <td>{{ dato.departure_time }}</td>
-                    <td>{{ dato.estimated_arrival }}</td>
-                    <td>{{ dato.status}}</td>
-                </tr>
-                {% endfor %}
-            </table>
-            <br>
-        </div>
-    </div>
-</body>
+    <h1>Información de vuelo</h1>         
 
-</html>
+        {% for flight in flights %}
+        <tr>
+            <h2><p> <b>Código de vuelo: </b> {{ flight.flight_iata}}</p></h2>
+            <p> <b>Aerolínea: </b> {{ flight.airline }}</p>
+            <p> <b>Procedencia: </b> {{ flight.departure }}</p>
+            <p> <b>Destino: </b> {{ flight.destination }}</p>
+            <p> <b>Hora de salida: </b> {{ flight.departure_time }}</p>
+            <p> <b>Hora de llegada: </b> {{ flight.departure_arribal }}</p>
+            <p> <b>Estado: </b> {{ flight.status }}</p>
+            
+        </tr>
+        {% endfor %}
+        <td>----------Ultima linea----------</td>
+
+        
+    <form method="GET" action="/">
+        <input type="submit" value="Regresar">
+    </form>
+</body>
 
 </html>
