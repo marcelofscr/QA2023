@@ -8,7 +8,7 @@ class controladorCodigoVuelos:
             print(listaVuelos)
             if listaVuelos == []:
                 return "No se encontraron vuelos disponibles" 
-            else:
+            else: #Filtra por código iata de vuelo
                 InformacionVuelo = [flight for flight in listaVuelos if flight.get("flight_iata") == iataVuelo ]
                 return InformacionVuelo
         except ValueError:

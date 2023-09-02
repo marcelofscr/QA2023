@@ -3,47 +3,38 @@
 
 <head>
     <title>MenuPrincipal</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        html,
-        body,
-        h1,
-        h2,
-        h3,
-        h4,
-        h5 {
-            font-family: "Raleway", sans-serif
-        }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 
 <body class="w3-light-grey">
-    <div class="w3-main" style="margin-left: 30px; margin-top: 43px;">
+    <div class="w3-main" style="margin-left: 30px; margin-top: 43px">
         <div class="w3-panel">
-    <h1>Información de vuelo</h1>         
+            <h1>Información de vuelo</h1>
 
-        {% for flight in flights %}
-        <tr>
-            <h2><p> <b>Código de vuelo: </b> {{ flight.flight_iata}}</p></h2>
-            <p> <b>Aerolínea: </b> {{ flight.airline }}</p>
-            <p> <b>Procedencia: </b> {{ flight.departure }}</p>
-            <p> <b>Destino: </b> {{ flight.destination }}</p>
-            <p> <b>Hora de salida: </b> {{ flight.departure_time }}</p>
-            <p> <b>Hora de llegada: </b> {{ flight.departure_arribal }}</p>
-            <p> <b>Estado: </b> {{ flight.status }}</p>
-            
-        </tr>
-        {% endfor %}
-        <td>----------Ultima linea----------</td>
+            {% for flight in flights %}
+            <tr>
+                <h2>
+                    <p><b>Código de vuelo: </b> {{ flight.flight_iata }}</p>
+                </h2>
+                <p><b>Aerolínea: </b> {{ flight.airline }}</p>
+                <p><b>Procedencia: </b> {{ flight.departure }}</p>
+                <p><b>Destino: </b> {{ flight.destination }}</p>
+                <p><b>Hora de salida: </b> {{ flight.departure_time }}</p>
+                <p><b>Hora de llegada: </b> {{ flight.departure_arribal }}</p>
+                <p><b>Estado: </b> {{ flight.status }}</p>
+            </tr>
+            {% endfor %}
+            <td>----------Ultima linea----------</td>
 
-        
-    <form method="GET" action="/">
-        <input type="submit" value="Regresar">
-    </form>
+            <form method="GET" action="/">
+                <input type="submit" value="Regresar" />
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>

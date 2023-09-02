@@ -4,8 +4,8 @@ class controladorAeropuerto:
 
     def get_airports(self, letra):
         listaAeropuertos = self.model.obtenerAeropuertos()
-        if letra == '*':
+        if letra == '*': # Muestra todos los aeropuertos
             return listaAeropuertos 
-        else:
+        else: # En caso de filtrar por letra
             listaAeropuertoFiltro = [airport for airport in listaAeropuertos if airport['airport_name'].startswith(letra.upper())]
             return listaAeropuertoFiltro

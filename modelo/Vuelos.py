@@ -1,11 +1,12 @@
 import requests
-import datetime
+from datetime import datetime
 
 class Vuelos:
     def __init__(self, api_key):
         self.api_key = api_key
 
     
+    # Retorna la información de un vuelo en específico a partir del Código iata del aeropuerto de llegada y de salida
     def obtenerVuelos(self, iataOrigen, iataDestino):
         url = f'http://api.aviationstack.com/v1/flights?access_key={self.api_key}&dep_iata={iataOrigen}&arr_iata={iataDestino}'
         response = requests.get(url)
@@ -29,6 +30,7 @@ class Vuelos:
                 })
             return vuelosRuta
 
+    # Retorna la información de un vuelo en específico a partir del Código iata del aeropuerto de llegada
     def obtenerVuelosLlegada(self, iataAeropuerto):
         url = f'http://api.aviationstack.com/v1/flights?access_key={self.api_key}&arr_iata={iataAeropuerto}'
         response = requests.get(url)
@@ -51,6 +53,7 @@ class Vuelos:
             return vuelosLlegada
         
 
+    # Retorna la información de un vuelo en específico a partir del Código iata del aeropuerto de salida
     def obtenerVuelosSalida(self, iataAeropuerto):
         url = f'http://api.aviationstack.com/v1/flights?access_key={self.api_key}&dep_iata={iataAeropuerto}'
         response = requests.get(url)
@@ -72,7 +75,7 @@ class Vuelos:
                 })
             return vuelosSalida
         
-    #Retorna la información de un vuelo en específico a partir de un Código
+    # Retorna la información de un vuelo en específico a partir del Código iata de un vuelo
     def obtenerVueloPorCodigo(self, iataVuelo):
         url = f'http://api.aviationstack.com/v1/flights?access_key={self.api_key}&flight_iata={iataVuelo}'
         response = requests.get(url)
@@ -86,6 +89,9 @@ class Vuelos:
                 departure = flight["departure"]["airport"]
                 destination = flight["arrival"]["airport"]
                 departure_time = flight["departure"]["estimated"]
+                print("HolaPerros")
+                print(departure_time)
+                print("Hola")
                 estimated_arrival = flight["arrival"]["estimated"]
                 status = flight["flight_status"]
 
