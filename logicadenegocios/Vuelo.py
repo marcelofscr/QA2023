@@ -1,12 +1,19 @@
 import requests
 from datetime import datetime
 
-class Vuelos:
+class Vuelo:
+    # Método constructor de la clase
     def __init__(self, api_key):
         self.api_key = api_key
 
-    
-    # Retorna la información de un vuelo en específico a partir del Código iata del aeropuerto de llegada y de salida
+    """
+    Obtiene la información de vuelos entre dos aeropuertos especificados por sus códigos IATA.
+    Args:
+        iataOrigen (str): El código IATA del aeropuerto de origen.
+        iataDestino (str): El código IATA del aeropuerto de destino.
+    Returns:
+        list: Una lista de diccionarios que representan la información de vuelos entre los aeropuertos.
+    """
     def obtenerVuelos(self, iataOrigen, iataDestino):
         url = f'http://api.aviationstack.com/v1/flights?access_key={self.api_key}&dep_iata={iataOrigen}&arr_iata={iataDestino}'
         response = requests.get(url)
@@ -30,7 +37,13 @@ class Vuelos:
                 })
             return vuelosRuta
 
-    # Retorna la información de un vuelo en específico a partir del Código iata del aeropuerto de llegada
+    """
+    Obtiene la información de vuelos que llegan a un aeropuerto especificado por su código IATA.
+    Args:
+        iataAeropuerto (str): El código IATA del aeropuerto de llegada.
+    Returns:
+        list: Una lista de diccionarios que representan la información de vuelos que llegan al aeropuerto.
+    """
     def obtenerVuelosLlegada(self, iataAeropuerto):
         url = f'http://api.aviationstack.com/v1/flights?access_key={self.api_key}&arr_iata={iataAeropuerto}'
         response = requests.get(url)
@@ -53,7 +66,13 @@ class Vuelos:
             return vuelosLlegada
         
 
-    # Retorna la información de un vuelo en específico a partir del Código iata del aeropuerto de salida
+    """
+    Obtiene la información de vuelos que salen desde un aeropuerto especificado por su código IATA.
+    Args:
+        iataAeropuerto (str): El código IATA del aeropuerto de salida.
+    Returns:
+        list: Una lista de diccionarios que representan la información de vuelos que salen del aeropuerto.
+    """
     def obtenerVuelosSalida(self, iataAeropuerto):
         url = f'http://api.aviationstack.com/v1/flights?access_key={self.api_key}&dep_iata={iataAeropuerto}'
         response = requests.get(url)
@@ -75,7 +94,13 @@ class Vuelos:
                 })
             return vuelosSalida
         
-    # Retorna la información de un vuelo en específico a partir del Código iata de un vuelo
+    """
+    Obtiene información de un vuelo específico por su código IATA.
+    Args:
+        iataVuelo (str): El código IATA del vuelo que se desea consultar.
+    Returns:
+        list: Una lista de diccionarios que representan la información del vuelo.
+    """
     def obtenerVueloPorCodigo(self, iataVuelo):
         url = f'http://api.aviationstack.com/v1/flights?access_key={self.api_key}&flight_iata={iataVuelo}'
         response = requests.get(url)

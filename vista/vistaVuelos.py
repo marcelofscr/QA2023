@@ -1,9 +1,9 @@
 import tkinter as tk
 from controlador.controladorVuelos import controladorVuelos  
-from modelo.Vuelos import Vuelos
+from logicadenegocios.Vuelo import Vuelo
 class vistaVuelos:
     def __init__(self, root):
-        self.controller = controladorVuelos(Vuelos("83a922f7be03a2cbd4dda957dffcc2a3"))
+        self.controller = controladorVuelos(Vuelo("83a922f7be03a2cbd4dda957dffcc2a3"))
 
         self.root = root
         self.root.title("Información")

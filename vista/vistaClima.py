@@ -1,6 +1,6 @@
 import tkinter as tk
 from controlador.controladorClima import controladorClima  
-from modelo.Aeropuerto import Aeropuerto 
+from logicadenegocios.Aeropuerto import Aeropuerto 
 
 class vistaClima:
     def __init__(self, root):

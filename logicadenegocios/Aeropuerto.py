@@ -1,10 +1,15 @@
 import requests
 
 class Aeropuerto:
+    # Método constructor de la clase
     def __init__(self, api_key):
         self.api_key = api_key
 
-    # Obtinene una lista de todos los aeropuertos
+    """
+    Obtiene una lista de todos los aeropuertos disponibles.
+    Returns:
+        list: Una lista de diccionarios que representan la información de los aeropuertos.
+    """
     def obtenerAeropuertos(self):
         url = f'http://api.aviationstack.com/v1/airports?access_key={self.api_key}'
         response = requests.get(url)
@@ -13,6 +18,6 @@ class Aeropuerto:
             data = response.json()
             airports = data['data']
             return airports
-        else:
+        else: # Retorna una lista vacía si no se pudo obtener la información de los aeropuertos
             return []
     
